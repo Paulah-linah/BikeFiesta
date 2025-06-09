@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Road Bikes | BikeFiesta</title>
+  <link rel="stylesheet" href="road.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav-left">
+        <a href="index.html" class="logo">
+          <i class="fas fa-bicycle"></i>
+          <h1>BikeFiesta</h1>
+        </a>
+      </div>
+    </nav>
+    <a href="cart.html" class="cart-link">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count">0</span>
+    </a>
+  </header>
+
+  <main>
+    <div class="cards-container">
+      <div class="product-card" data-category="Road">
+        <img src="Giant TCR.jpeg" alt="Giant TCR">
+        <h3>Giant TCR</h3>
+        <p>Lightweight and aerodynamic for speed and efficiency.</p>
+        <p class="price">Kshs.315,000</p>
+        <button class="add-to-cart" data-category="Road" data-stock="5"> <!-- In stock -->
+          <i class="fas fa-shopping-cart"></i>
+          Add to Cart
+        </button>
+      </div>
+
+      <div class="product-card" data-category="Road">
+        <img src="Giant Defy.jpeg" alt="Giant Defy">
+        <h3>Giant Defy</h3>
+        <p>Comfortable and endurance-focused, smooth and reliable.</p>
+        <p class="price">Kshs.286,000</p>
+        <button class="add-to-cart" data-category="Road" data-stock="3"> <!-- In stock -->
+          <i class="fas fa-shopping-cart"></i>
+          Add to Cart
+        </button>
+      </div>
+
+      <div class="product-card" data-category="Road">
+        <img src="Giant FastRoad.jpeg" alt="Giant FastRoad">
+        <h3>Giant FastRoad</h3>
+        <p>Lightweight and aerodynamic for speed and efficiency.</p>
+        <p class="price">Kshs.130,000</p>
+        <button class="add-to-cart" data-category="Road" data-stock="3"> <!-- In stock -->
+          <i class="fas fa-shopping-cart"></i>
+          Add to Cart
+        </button>
+      </div>
+
+      <!-- Add more product cards for other categories -->
+    </div>
+  </main>
+
+  <a href="categories.html" class="back-btn">
+    <img src="back.png" alt="Back">
+  </a>
+
+  <script>
+    // Get references to the cart link and cart count elements
+    const cartLink = document.querySelector('.cart-link');
+    const cartCount = document.querySelector('.cart-count');
+
+    // Initialize an array to store the cart items
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Function to update the cart count
+    function updateCartCount() {
+      const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = totalItems;
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+
+    // Function to check if a product is out of stock
+    function isOutOfStock(button) {
+      const stock = parseInt(button.getAttribute('data-stock'));
+      return stock <= 0;
+    }
+
+    // Function to add a product to the cart
+    function addToCart(product) {
+      // Check if the product is already in the cart
+      const existingProduct = cartItems.find(item => item.name === product.name);
+
+      if (existingProduct) {
+        // If the product is already in the cart, increase its quantity
+        existingProduct.quantity += 1;
+      } else {
+        // If the product is not in the cart, add it with a quantity of 1
+        product.quantity = 1;
+        cartItems.push(product);
+      }
+
+      updateCartCount();
+      alert(`${product.name} added to cart!`);
+    }
+
+    // Get all the "Add to Cart" buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    // Add event listeners to each button
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const productCard = button.closest('.product-card');
+        const category = productCard.getAttribute('data-category');
+        const name = productCard.querySelector('h3').textContent;
+        const price = parseInt(productCard.querySelector('.price').textContent.replace(/[^0-9]/g, ''));
+        const image = productCard.querySelector('img').src;
+
+        // Check if the product is out of stock
+        if (isOutOfStock(button)) {
+          alert(`${name} is out of stock!`);
+          return;
+        }
+
+        // Add the product to the cart
+        const product = { category, name, price, image };
+        addToCart(product);
+      });
+    });
+
+    // Update the cart count on page load
+    updateCartCount();
+  </script>
+  <script src="cart.js"></script>
+</body>
+</html>

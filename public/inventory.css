@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo i {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #ff6600;
+}
+
+.logo h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background-color: #ff6600;
+}
+
+  
+  main {
+    width: 90%;
+    margin: 2rem auto;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  #inventory-section {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+  
+  #inventory-table th, #inventory-table td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  #inventory-table th {
+    background-color: #ff6600;
+  }
+  
+  #inventory-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #addProductForm {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #addProductForm label {
+    margin: 0.5rem 0 0.2rem;
+  }
+  
+  #addProductForm input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+  
+  #addProductForm button {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+   
+  }
+  
+  #addProductForm button:hover {
+    background-color: #e65c00;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  
+  /* Existing styles... */
+
+.action-button {
+  background-color: #ff6600; /* Background color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  padding: 8px 16px; /* Padding */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 4px; /* Rounded corners */
+  margin-right: 5px; /* Spacing between buttons */
+}
+
+.action-button:hover {
+  background-color: #e65c00; /* Darker background on hover */
+}

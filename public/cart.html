@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - BikeFiesta</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <i class="fas fa-bicycle"></i>
+          <h1>BikeFiesta</h1>
+        </div>
+        
+      </header>
+    
+
+  <main>
+    <h1>Shopping Cart</h1>
+
+    <div id="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </div>
+
+    <div id="cart-summary">
+        <div id="cart-total-card">
+          <h3>Total</h3>
+          <p id="total-price">$0</p>
+        </div>
+        <div id="delivery-options">
+          <h3>Delivery Options</h3>
+          <div class="option">
+            <input type="radio" id="pickup" name="delivery-option" value="pickup">
+            <label for="pickup">Pick from Us</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="delivery" name="delivery-option" value="delivery">
+            <label for="delivery">Deliver to Door</label>
+          </div>
+        </div>
+        <button id="checkout-btn">Proceed to Checkout</button>
+      </div>
+  </main>
+ 
+
+  <footer>
+    <p>&copy; 2024 BikeFiesta. All rights reserved.</p>
+  </footer>
+
+  <script src="cart.js"></script>
+
+</body>
+</html>

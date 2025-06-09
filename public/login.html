@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - BikeFiesta</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">
+        <i class="fas fa-bicycle"></i>
+        <h1>BikeFiesta</h1>
+      </a>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="login-section">
+      <div class="login-info">
+        <h2>Admin Login</h2>
+        <p>Please enter your credentials to access the admin dashboard.</p>
+      </div>
+      <div class="login-form">
+        <h2>Login Form</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" autocomplete="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required>
+          </div>
+          <button type="submit">
+            <div class="svg-wrapper-1">
+              <div class="svg-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <path fill="none" d="M0 0h24v24H0z"></path>
+                  <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                </svg>
+              </div>
+            </div>
+            <span>Login</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 BikeFiesta. All rights reserved.</p>
+  </footer>
+
+  <script src="login.js"></script>
+</body>
+</html>

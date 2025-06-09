@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo i {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #ff6600;
+}
+
+.logo h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background-color: #ff6600;
+}
+
+main {
+  max-width: 1150px;
+  margin: 2px auto; /* Adjusted margin to bring content higher */
+  padding: 2px; /* Reduced padding for a more compact layout */
+}
+
+.about-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about-content {
+  flex-basis: 60%;
+}
+
+.about-content h2 {
+  font-size: 38px;
+  margin-bottom: 30px; /* Increased spacing between heading and paragraph */
+}
+
+.about-content p {
+  font-size: 20px;
+  margin-bottom: 20px; /* Added spacing between paragraphs */
+}
+
+.about-image {
+  flex-basis: 35%;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 2px;
+}

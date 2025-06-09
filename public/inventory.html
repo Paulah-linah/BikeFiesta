@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management - BikeFiesta</title>
+  <link rel="stylesheet" href="inventory.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">
+          <i class="fas fa-bicycle"></i>
+          <h1>BikeFiesta</h1>
+      </a>
+      <ul>
+          <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+      </ul>
+  </nav>
+  </header>
+
+  <main>
+    <section id="inventory-section">
+      <h2>Inventory Management</h2>
+      <table id="inventory-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock Level</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Inventory items will be dynamically inserted here -->
+        </tbody>
+      </table>
+
+      <h2>Add New Product</h2>
+      <form id="addProductForm">
+        <input type="hidden" id="productId" name="productId">
+        <label for="name">Product Name</label>
+        <input type="text" id="name" name="name" required>
+      
+        <label for="category">Category</label>
+        <input type="text" id="category" name="category" required>
+      
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" required>
+      
+        <label for="stock">Stock Level</label>
+        <input type="number" id="stock" name="stock" required>
+      
+        <button type="submit">Add Product</button>
+      </form>
+      
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 BikeFiesta. All rights reserved.</p>
+  </footer>
+
+  <script src="inventory.js"></script>
+</body>
+</html>

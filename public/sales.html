@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Analytics - BikeFiesta</title>
+    <link rel="stylesheet" href="sales.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <i class="fas fa-bicycle"></i>
+                <h1>BikeFiesta</h1>
+            </a>
+            <ul>
+                <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="sales-analytics-section">
+            <h2>Sales Analytics</h2>
+            <div style="height: 400px; width: 100%;">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+        <div class="sales-report-section">
+            <h2>Generate Sales Report</h2>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate">
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate">
+            <button class="action-button" onclick="generateReport()">Generate Report</button>
+            <button class="action-button" onclick="exportReportToPDF()">Export to PDF</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 BikeFiesta. All rights reserved.</p>
+    </footer>
+
+    <script src="sales.js"></script>
+</body>
+</html>

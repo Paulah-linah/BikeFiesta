@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rent a Bike | BikeFiesta</title>
+  <link rel="stylesheet" href="services.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="nav-left">
+        <a href="index.html" class="logo">
+          <i class="fas fa-bicycle"></i>
+          <h1>BikeFiesta</h1>
+        </a>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+        </ul>
+      </div>
+    </nav>
+    <a href="servicescart.html" class="cart-link">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count">0</span>
+    </a>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h3 class="subtitle-center">Bikes for Rent</h3>
+    <div class="cards-container">
+      <!-- Bike Cards -->
+      <div class="product-card" data-price="2500">
+        <img src="Ibis.jpeg" alt="Mountain Bike">
+        <h3>Mountain Bike</h3>
+        <p>Perfect for off-road adventures.<br>(Maximum 7days of rent)</p>
+        <p class="price">Kshs.2,500/day</p>
+        <button class="add-to-cart" data-category="Rentals" data-bike="Mountain Bike">
+          <i class="fas fa-shopping-cart"></i> Rent
+        </button>
+      </div>
+
+      <div class="product-card" data-price="2000">
+        <img src="Giant TCR.jpeg" alt="Road Bike">
+        <h3>Road Bike</h3>
+        <p>Light and fast for smooth roads.<br>(Maximum 7days of rent)</p>
+        <p class="price">Kshs.2,000/day</p>
+        <button class="add-to-cart" data-category="Rentals" data-bike="Road Bike">
+          <i class="fas fa-shopping-cart"></i> Rent
+        </button>
+      </div>
+
+      <div class="product-card" data-price="3000">
+        <img src="Gazelle Ultimate.jpeg" alt="Electric Bike">
+        <h3>Electric Bike</h3>
+        <p>Effortless riding with electric assistance.<br>(Maximum 7days of rent)</p>
+        <p class="price">Kshs.3,000/day</p>
+        <button class="add-to-cart" data-category="Rentals" data-bike="Electric Bike">
+          <i class="fas fa-shopping-cart"></i> Rent
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Rental Days Modal -->
+  <div id="rent-popup" class="popup hidden">
+    <h3>Select Rental Days</h3>
+    <input type="number" id="days-input" min="1" max="7" value="1">
+    <p>Total Price: Kshs.<span id="total-price">0</span></p>
+    <button id="confirm-rental" class="add-to-cart">Add to Cart</button>
+  </div>
+
+  <script>
+    const modal = document.getElementById("rent-popup");
+    const daysInput = document.getElementById("days-input");
+    const totalPriceDisplay = document.getElementById("total-price");
+    const confirmRentalButton = document.getElementById("confirm-rental");
+    const cartLink = document.querySelector('.cart-link');
+    const cartCount = document.querySelector('.cart-count');
+    let selectedProduct = null;
+    let selectedProductPrice = 0;
+    let selectedProductImage = "";
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Update cart count
+    function updateCartCount() {
+      cartCount.textContent = cartItems.length;
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+
+    // Open modal and set product details
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const productCard = e.target.closest('.product-card');
+        selectedProduct = productCard.querySelector('h3').textContent;
+        selectedProductPrice = parseInt(productCard.getAttribute('data-price'));
+        selectedProductImage = productCard.querySelector('img').src;
+        daysInput.value = 1;
+        updateTotalPrice();
+        modal.classList.remove("hidden");
+      });
+    });
+
+    // Update total price based on selected days
+    daysInput.addEventListener('input', updateTotalPrice);
+    function updateTotalPrice() {
+      const days = Math.min(daysInput.value, 7);
+      daysInput.value = days;
+      const total = selectedProductPrice * days;
+      totalPriceDisplay.textContent = total;
+    }
+
+    // Add to cart with selected days and close modal
+    confirmRentalButton.addEventListener('click', () => {
+      const days = parseInt(daysInput.value);
+      const total = selectedProductPrice * days;
+      const product = {
+        name: selectedProduct,
+        days: days,
+        pricePerDay: selectedProductPrice,
+        total: total,
+        image: selectedProductImage,
+        category: 'rental'  // Ensure category is set
+      };
+
+      cartItems.push(product);
+      updateCartCount();
+      modal.classList.add("hidden"); // Close modal after adding to cart
+      alert("Item added to cart!");
+    });
+
+    // Close modal when clicking outside
+    window.onclick = (event) => {
+      if (event.target == modal) modal.classList.add("hidden");
+    };
+
+    // Initialize cart count
+    updateCartCount();
+  </script>
+</body>
+</html>

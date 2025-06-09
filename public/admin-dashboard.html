@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - BikeFiesta</title>
+  <link rel="stylesheet" href="admin-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">
+        <i class="fas fa-bicycle"></i>
+        <h1>BikeFiesta</h1>
+      </a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="dashboard-section">
+      <h2>Admin Dashboard</h2>
+      <div class="dashboard-content">
+        <div class="dashboard-card">
+          <h3>Inventory Management</h3>
+          <p>Manage stock levels, add new products, and update existing items.</p>
+          <i class="fas fa-boxes"></i>
+          <button class="btn" onclick="manageInventory()">Manage Inventory</button>
+        </div>
+        <div class="dashboard-card">
+          <h3>Order Tracking</h3>
+          <p>View and manage customer orders in real-time.</p>
+          <i class="fas fa-clock"></i>
+          <button class="btn" onclick="trackOrders()">Track Orders</button>
+        </div>
+        <div class="dashboard-card">
+          <h3>Analytics</h3>
+          <p>Monitor sales, traffic, and customer behavior.</p>
+          <i class="fas fa-chart-line"></i>
+          <button class="btn" onclick="viewAnalytics()">View Analytics</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 BikeFiesta. All rights reserved.</p>
+  </footer>
+
+  <script src="admin-dashboard.js"></script>
+</body>
+</html>
+

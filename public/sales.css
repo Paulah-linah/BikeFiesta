@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo i {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #ff6600;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #ff6600;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #333;
+}
+
+.sales-analytics-section,
+.sales-report-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.sales-report-section {
+    text-align: center;
+}
+
+.sales-report-section label {
+    margin-right: 10px;
+}
+
+.sales-report-section input {
+    margin-right: 20px;
+}
+
+.action-button {
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.action-button:hover {
+    background-color: #e65c00;
+}
+
+input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 5px;
+}
+
+label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* Chart container styles */
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2rem;
+}

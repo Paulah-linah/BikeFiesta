@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo i {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #ff6600;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #ff6600;
+}
+
+main {
+    width: 90%;
+    margin: 2rem auto;
+}
+
+h2 {
+    color: #333;
+}
+
+.order-tracking-section {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+#order-table th, #order-table td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+#order-table th {
+    background-color: #ff6600;
+}
+
+#order-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.action-button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.action-button:hover {
+    background-color: #e65c00;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+
+.update-status-button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.update-status-button:hover {
+    background-color: #e65c00;
+}
+
+.status-select {
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+/* Colors for different statuses */
+.status-select option[value="Pending"] {
+    background-color: #ffc107;
+    color: black;
+}
+
+.status-select option[value="Shipped"] {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.status-select option[value="Delivered"] {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-select option[value="Cancelled"] {
+    background-color: #dc3545;
+    color: white;
+}

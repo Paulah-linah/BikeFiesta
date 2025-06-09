@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking - BikeFiesta</title>
+    <link rel="stylesheet" href="order-tracking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <i class="fas fa-bicycle"></i>
+                <h1>BikeFiesta</h1>
+            </a>
+            <ul>
+              
+                <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="order-tracking-section">
+            <h2>Order Tracking</h2>
+            <table id="order-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Items</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Orders will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 BikeFiesta. All rights reserved.</p>
+    </footer>
+
+    <script src="order-tracking.js"></script>
+</body>
+</html>
