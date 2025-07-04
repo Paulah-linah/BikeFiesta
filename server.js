@@ -6,7 +6,7 @@ const session = require('express-session');
 const path = require('path');
 const { jsPDF } = require('jspdf');
 const app = express();
-const port = 3000;
+const port = 3004;
 
 // MySQL database connection
 const db = mysql.createConnection({
@@ -56,9 +56,12 @@ app.post('/contact', (req, res) => {
     });
 });
 
-// Order submission with stock management
+// Order submission with stock management and rental handling
 app.post('/order', (req, res) => {
     const { orderItems, customerName, customerEmail, customerPhone, totalPrice } = req.body;
+
+    // Determine if the order is for a rental
+    const isRentalOrder = orderItems.some(item => item.category === 'rental');
 
     db.beginTransaction((err) => {
         if (err) {
@@ -66,92 +69,86 @@ app.post('/order', (req, res) => {
             return res.status(500).send('Error submitting order');
         }
 
-        // 1. Check stock availability and lock rows
-        const checkStockPromises = orderItems.map((item) => {
-            return new Promise((resolve, reject) => {
-                const stockQuery = 'SELECT stock FROM products WHERE name = ? FOR UPDATE';
-                db.query(stockQuery, [item.name], (err, results) => {
-                    if (err) return reject(err);
-                    if (results.length === 0) return reject(new Error(`Product ${item.name} not found`));
-                    if (results[0].stock < item.quantity) reject(new Error(`Insufficient stock for ${item.name}`));
-                    else resolve();
+        // Create the order first
+        const orderQuery = 'INSERT INTO orders (total_price, name, email, phone) VALUES (?, ?, ?, ?)';
+        db.query(orderQuery, [totalPrice, customerName, customerEmail, customerPhone], (err, result) => {
+            if (err) {
+                console.error('Error creating order:', err);
+                return db.rollback(() => res.status(500).send('Error submitting order'));
+            }
+
+            const orderId = result.insertId;
+
+            // Insert order items
+            const itemQueries = orderItems.map((item) => {
+                return new Promise((resolve, reject) => {
+                    // For rentals, 'quantity' holds the number of days
+                    const itemQuery = 'INSERT INTO order_items (order_id, category, item_name, price, quantity) VALUES (?, ?, ?, ?, ?)';
+                    db.query(itemQuery, [orderId, item.category, item.name, item.price, item.quantity], (err) => {
+                        if (err) return reject(err);
+                        resolve();
+                    });
                 });
             });
-        });
 
-        Promise.all(checkStockPromises)
-            .then(() => {
-                // 2. Create order
-                const orderQuery = 'INSERT INTO orders (total_price, name, email, phone) VALUES (?, ?, ?, ?)';
-                db.query(orderQuery, [totalPrice, customerName, customerEmail, customerPhone], 
-                    (err, result) => {
-                        if (err) {
-                            console.error('Error submitting order:', err);
-                            return db.rollback(() => res.status(500).send('Error submitting order'));
-                        }
-
-                        const orderId = result.insertId;
-
-                        // 3. Insert order items
-                        const itemQueries = orderItems.map((item) => {
+            Promise.all(itemQueries)
+                .then(() => {
+                    if (isRentalOrder) {
+                        // For rentals, we skip stock updates and commit directly
+                        db.commit((err) => {
+                            if (err) {
+                                return db.rollback(() => res.status(500).send('Error submitting order'));
+                            }
+                            res.status(200).send('Order submitted successfully');
+                        });
+                    } else {
+                        // For regular products, proceed with stock checking and updating
+                        const checkStockPromises = orderItems.map((item) => {
                             return new Promise((resolve, reject) => {
-                                const itemQuery = 'INSERT INTO order_items (order_id, category, item_name, price, quantity) VALUES (?, ?, ?, ?, ?)';
-                                db.query(itemQuery, [orderId, item.category, item.name, item.price, item.quantity], 
-                                    (err) => err ? reject(err) : resolve()
-                                );
+                                const stockQuery = 'SELECT stock FROM products WHERE name = ? FOR UPDATE';
+                                db.query(stockQuery, [item.name], (err, results) => {
+                                    if (err) return reject(err);
+                                    if (results.length === 0) return reject(new Error(`Product ${item.name} not found`));
+                                    if (results[0].stock < item.quantity) reject(new Error(`Insufficient stock for ${item.name}`));
+                                    else resolve();
+                                });
                             });
                         });
 
-                        Promise.all(itemQueries)
+                        Promise.all(checkStockPromises)
                             .then(() => {
-                                // 4. Update stock
                                 const updateStockPromises = orderItems.map((item) => {
                                     return new Promise((resolve, reject) => {
                                         const updateQuery = 'UPDATE products SET stock = stock - ? WHERE name = ?';
-                                        db.query(updateQuery, [item.quantity, item.name], 
-                                            (err) => err ? reject(err) : resolve()
-                                        );
+                                        db.query(updateQuery, [item.quantity, item.name], (err) => {
+                                            if (err) return reject(err);
+                                            resolve();
+                                        });
                                     });
                                 });
 
-                                Promise.all(updateStockPromises)
-                                    .then(() => {
-                                        // 5. Record sale
-                                        const salesQuery = 'INSERT INTO sales (order_id, total_price) VALUES (?, ?)';
-                                        db.query(salesQuery, [orderId, totalPrice], 
-                                            (err) => {
-                                                if (err) {
-                                                    console.error('Error inserting into sales:', err);
-                                                    return db.rollback(() => res.status(500).send('Error submitting order'));
-                                                }
-
-                                                // Commit transaction
-                                                db.commit((err) => {
-                                                    if (err) {
-                                                        console.error('Error committing transaction:', err);
-                                                        return db.rollback(() => res.status(500).send('Error submitting order'));
-                                                    }
-                                                    res.status(200).send('Order submitted successfully');
-                                                });
-                                            }
-                                        );
-                                    })
-                                    .catch((err) => {
-                                        console.error('Error updating stock:', err);
-                                        db.rollback(() => res.status(500).send('Error submitting order'));
-                                    });
+                                return Promise.all(updateStockPromises);
                             })
-                            .catch((err) => {
-                                console.error('Error inserting order items:', err);
+                            .then(() => {
+                                // Finally, commit the transaction
+                                db.commit((err) => {
+                                    if (err) {
+                                        return db.rollback(() => res.status(500).send('Error submitting order'));
+                                    }
+                                    res.status(200).send('Order submitted successfully');
+                                });
+                            })
+                            .catch(err => {
+                                console.error('Error during stock management:', err);
                                 db.rollback(() => res.status(500).send('Error submitting order'));
                             });
                     }
-                );
-            })
-            .catch((err) => {
-                console.error('Error in order processing:', err);
-                db.rollback(() => res.status(500).send('Error submitting order'));
-            });
+                })
+                .catch(err => {
+                    console.error('Error inserting order items:', err);
+                    db.rollback(() => res.status(500).send('Error submitting order'));
+                });
+        });
     });
 });
 

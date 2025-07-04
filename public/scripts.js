@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartCount = document.querySelector('.cart-count');
   const shopLink = document.getElementById('shopLink');
   const cartLink = document.querySelector('.cart-link');
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  const closeBtn = document.querySelector('.close-btn');
 
   // Add to cart function
   const addToCart = (product) => {
@@ -23,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update cart count
   const updateCartCount = () => {
-    cartCount.textContent = cartItems.length;
+    if (cartCount) {
+      cartCount.textContent = cartItems.length;
+    }
   };
 
   // Check if a product is out of stock
@@ -57,17 +62,28 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Initialize page
-  attachCartHandlers();
+  // Only attach cart handlers if cart buttons exist on the page
+  if (document.querySelectorAll('.add-to-cart').length > 0) {
+    attachCartHandlers();
+  }
   updateCartCount();
 
   // Navigation
-  shopLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    window.location.href = 'categories.html';
-  });
+  if (shopLink) {
+    shopLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.location.href = 'categories.html';
+    });
+  }
 
-  // Demo hover effect (if using jQuery)
-  $(".hover").mouseleave(function() {
-    $(this).removeClass("hover");
-  });
+  // Hamburger Menu
+  if (hamburger && navLinks && closeBtn) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+    });
+  }
 });

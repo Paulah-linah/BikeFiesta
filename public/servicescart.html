@@ -9,10 +9,26 @@
 </head>
 <body>
   <header>
-    <div class="logo">
-      <i class="fas fa-bicycle"></i>
-      <h1>BikeFiesta</h1>
+    <a href="index.html" class="logo">
+        <i class="fas fa-bicycle"></i>
+        <h1>BikeFiesta</h1>
+    </a>
+    <div class="hamburger">
+        <i class="fas fa-bars"></i>
     </div>
+    <div class="nav-links">
+        <div class="close-btn">&times;</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+        </ul>
+    </div>
+    <a href="servicescart.html" class="cart-link">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
   </header>
   
   <main>
@@ -35,6 +51,7 @@
     <p>&copy; 2024 BikeFiesta. All rights reserved.</p>
   </footer>
 
+  <script src="scripts.js"></script>
   <script src="rentalCart.js"></script>
   
 </body>

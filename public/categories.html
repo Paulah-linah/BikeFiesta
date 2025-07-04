@@ -1,19 +1,34 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact BikeFiesta</title>
-  <link rel="stylesheet" href="categories.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Categories | BikeFiesta</title>
+    <link rel="stylesheet" href="categories.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+    <header>
+        <a href="index.html" class="logo">
+            <i class="fas fa-bicycle"></i>
+            <h1>BikeFiesta</h1>
+        </a>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links">
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
  
 
   <main>
-    <div class="background"></div>
-    <div class="background-texture"></div>
-
     <section class="carousel">
       <h2 class="categories__title">CATEGORIES</h2>
       <div class="carousel__container">
@@ -88,11 +103,10 @@
           </div>
         </div>
       </div>
-      <a href="index.html" class="back-btn">
-        <img src="back.png" alt="Back">
-      </a>
+
     </section>
   </main>
+
   <script src="scripts.js"></script>
-  </body>
-  </html>
+</body>
+</html>

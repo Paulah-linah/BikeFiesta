@@ -2,19 +2,18 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* --- HEADER & NAVIGATION --- */
 header {
   background-color: #333;
   color: #fff;
   padding: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-nav {
-  display: flex;
   align-items: center;
 }
 
@@ -36,33 +35,55 @@ nav {
   margin: 0;
 }
 
-nav ul {
+/* Desktop Navigation Links */
+.nav-links ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
 }
 
-nav ul li {
+.nav-links li {
   margin-left: 20px;
 }
 
-nav ul li a {
+.nav-links a {
   color: #fff;
   text-decoration: none;
   padding: 10px;
   transition: background-color 0.3s;
 }
 
-nav ul li a:hover,
-nav ul li a.active {
+.nav-links a:hover,
+.nav-links a.active {
   background-color: #ff6600;
 }
 
+/* Hamburger & Side Panel (Hidden on Desktop) */
+.hamburger, .close-btn {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger i {
+    font-size: 24px;
+    color: #fff;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px; /* Moved to the far right */
+    font-size: 24px; /* Reduced font size */
+    color: #fff;
+}
+
+/* --- MAIN CONTENT --- */
 main {
   max-width: 1150px;
-  margin: 2px auto; /* Adjusted margin to bring content higher */
-  padding: 2px; /* Reduced padding for a more compact layout */
+  margin: 20px auto;
+  padding: 20px;
+  flex: 1 0 auto; /* Modified to implement sticky footer */
 }
 
 .about-section {
@@ -70,6 +91,7 @@ main {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .about-content {
@@ -77,13 +99,14 @@ main {
 }
 
 .about-content h2 {
-  font-size: 38px;
-  margin-bottom: 30px; /* Increased spacing between heading and paragraph */
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 
 .about-content p {
-  font-size: 20px;
-  margin-bottom: 20px; /* Added spacing between paragraphs */
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .about-image {
@@ -93,11 +116,96 @@ main {
 .about-image img {
   max-width: 100%;
   height: auto;
+  border-radius: 8px;
 }
 
+/* --- FOOTER --- */
 footer {
   background-color: #333;
   color: #fff;
   text-align: center;
-  padding: 2px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+
+/* --- RESPONSIVE STYLES --- */
+@media (max-width: 768px) {
+    /* Hide Desktop Nav, Show Hamburger */
+    .nav-links ul {
+        display: none;
+    }
+    .hamburger {
+        display: block;
+    }
+
+    /* Side Panel Container */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #333;
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        padding-top: 60px;
+        box-sizing: border-box;
+    }
+
+    /* Active State for Side Panel */
+    .nav-links.active {
+        transform: translateX(0);
+    }
+
+    .nav-links.active .close-btn {
+        display: block;
+    }
+
+    /* Links inside the active side panel */
+    .nav-links.active ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .nav-links.active li {
+        width: 100%;
+        margin: 0;
+    }
+
+    .nav-links.active a {
+        padding: 15px 20px;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Responsive Content & Fonts */
+    .about-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-content, .about-image {
+        flex-basis: 100%;
+        padding: 0 15px;
+    }
+
+    .about-content {
+        margin-top: 30px;
+    }
+
+    .about-content h2 {
+        font-size: 2rem; /* Responsive Font */
+    }
+
+    .about-content p {
+        font-size: 1rem; /* Responsive Font */
+    }
 }

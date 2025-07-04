@@ -9,16 +9,45 @@
 </head>
 <body>
   <header>
-    <nav>
-      <a href="index.html" class="logo">
-        <i class="fas fa-bicycle"></i>
-        <h1>BikeFiesta</h1>
-      </a>
+    <div class="logo">
+        <a href="index.html">
+            <i class="fas fa-bicycle"></i>
+            <h1>BikeFiesta</h1>
+        </a>
+    </div>
+    <nav class="nav-links">
+        <a href="#" class="close-btn"><i class="fas fa-times"></i></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="services.html">Services</a></li>
+        </ul>
     </nav>
-  </header>
+    <div class="hamburger">
+        <i class="fas fa-bars"></i>
+    </div>
+    <a href="servicescart.html" class="cart-link">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
+</header>
 
   <main>
     <div class="contact-section">
+      <div class="contact-form">
+        <h2>Payment Instructions</h2>
+        <div id="payment-instructions">
+          <ol>
+            <li>On your Safaricom phone go to the M-PESA menu</li>
+            <li>1.Select "Send Money"</li>
+            <li>2.Enter phone number 0700292205</li>
+            <li>3.Enter the total amount</li>
+            <li>4.Enter your M-PESA pin</li>
+            <li>You will receive a confirmation SMS from M-PESA with a Confirmation Code</li>
+          </ol>
+        </div>
+      </div>
       <div class="contact-info">
         <h2>Enter Billing Details</h2>
         <form id="billing-form">
@@ -55,19 +84,6 @@
           </button>
         </form>
       </div>
-      <div class="contact-form">
-        <h2>Payment Instructions</h2>
-        <div id="payment-instructions">
-          <ol>
-            <li>On your Safaricom phone go to the M-PESA menu</li>
-            <li>1.Select "Send Money"</li>
-            <li>2.Enter phone number 0700292205</li>
-            <li>3.Enter the total amount</li>
-            <li>4.Enter your M-PESA pin</li>
-            <li>You will receive a confirmation SMS from M-PESA with a Confirmation Code</li>
-          </ol>
-        </div>
-      </div>
     </div>
   </main>
 
@@ -75,7 +91,7 @@
     <p>&copy; 2024 BikeFiesta. All rights reserved.</p>
   </footer>
 
-  <script src="cart.js"></script>
+  <script src="scripts.js"></script>
   <script src="billing.js"></script>
  
 </body>

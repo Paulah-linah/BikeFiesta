@@ -101,7 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
   checkoutBtn.addEventListener('click', () => {
     if (rentalItems.length > 0) {
       const totalRentalCost = rentalItems.reduce((total, item) => total + (item.pricePerDay * item.days), 0);
+      // Save both the total price and the items to sessionStorage for the billing page
       sessionStorage.setItem('totalPrice', totalRentalCost);
+      sessionStorage.setItem('rentalItems', JSON.stringify(rentalItems));
+
+      // Clear the main cart to prevent conflicts on the billing page
+      localStorage.removeItem('cartItems');
+
       window.location.href = 'billing.html';
     } else {
       alert('Your rental cart is empty.');

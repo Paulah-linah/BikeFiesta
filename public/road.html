@@ -4,23 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Road Bikes | BikeFiesta</title>
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="road.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
   <header>
-    <nav>
-      <div class="nav-left">
-        <a href="index.html" class="logo">
-          <i class="fas fa-bicycle"></i>
-          <h1>BikeFiesta</h1>
-        </a>
+    <div class="logo">
+      <i class="fas fa-bicycle"></i>
+      <h1>BikeFiesta</h1>
+    </div>
+    <div class="nav-links">
+      <div class="close-btn">
+        <i class="fas fa-times"></i>
       </div>
-    </nav>
-    <a href="cart.html" class="cart-link">
-      <i class="fas fa-shopping-cart"></i>
-      <span class="cart-count">0</span>
-    </a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="header-right">
+      <a href="cart.html" class="cart-link">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -62,9 +76,7 @@
     </div>
   </main>
 
-  <a href="categories.html" class="back-btn">
-    <img src="back.png" alt="Back">
-  </a>
+
 
   <script>
     // Get references to the cart link and cart count elements
@@ -132,6 +144,7 @@
     // Update the cart count on page load
     updateCartCount();
   </script>
+  <script src="scripts.js"></script>
   <script src="cart.js"></script>
 </body>
 </html>
