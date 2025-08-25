@@ -216,6 +216,14 @@ footer {
 
 /* --- RESPONSIVE STYLES --- */
 @media (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    .logo h1 {
+        font-size: 22px;
+    }
+
     /* Hide Desktop Nav, Show Hamburger */
     .nav-links ul {
         display: none;
@@ -271,19 +279,24 @@ footer {
         box-sizing: border-box;
     }
 
+    main {
+        padding: 20px 15px;
+    }
+
     /* Responsive Content & Fonts */
     .contact-section {
         flex-direction: column;
         text-align: center;
+        gap: 20px;
     }
 
     .contact-info, .contact-form {
         flex-basis: 100%;
-        padding: 0 15px;
+        padding: 0 10px;
     }
 
     .contact-info {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     .contact-info h2, .contact-form h2 {
@@ -292,5 +305,19 @@ footer {
 
     .form-group input, .form-group textarea {
         width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 20px;
+    }
+
+    .contact-info h2, .contact-form h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact-info ul li {
+        font-size: 0.95rem;
     }
 }
