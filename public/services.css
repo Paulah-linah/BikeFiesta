@@ -36,6 +36,11 @@ header {
   margin: 0;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
 /* Desktop Navigation Links */
 .nav-links ul {
   list-style-type: none;
@@ -227,12 +232,26 @@ main {
 
 /* --- RESPONSIVE STYLES --- */
 @media (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    .logo h1 {
+        font-size: 22px;
+    }
+
+    .nav-links {
+        order: 1; /* Change order to keep hamburger on the right */
+    }
+
     /* Hide Desktop Nav, Show Hamburger */
     .nav-links ul {
         display: none;
     }
+
     .hamburger {
         display: block;
+        margin-left: 15px; /* Space between cart and hamburger */
     }
 
     /* Side Panel Container */
@@ -288,13 +307,18 @@ main {
     }
 
     .product-card {
-      max-width: 90%;
+      max-width: 80%;
+      margin: 0 auto;
     }
 }
 
 @media (max-width: 480px) {
     .logo h1 {
-        font-size: 1.25rem;
+        font-size: 20px;
+    }
+
+    .cart-link i {
+        font-size: 22px;
     }
 
     .subtitle-center {
@@ -306,7 +330,7 @@ main {
     }
 
     .product-card p {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
 }
   
