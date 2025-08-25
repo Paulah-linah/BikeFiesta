@@ -128,7 +128,7 @@ body {
     margin: 5px 0;
   }
   
-/* Header and Navigation Styles */
+/* --- HEADER & NAVIGATION --- */
 header {
   background-color: #333;
   color: #fff;
@@ -136,67 +136,76 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 1000;
+  position: relative; /* Needed for cart positioning */
 }
 
 .logo {
   display: flex;
   align-items: center;
   text-decoration: none;
-}
-
-.logo i {
-  font-size: 36px;
-  color: #ff6600;
-  margin-right: 10px;
-}
-
-.logo h1 {
-  margin: 0;
-  font-size: 24px;
   color: #fff;
 }
 
+.logo i {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #ff6600;
+}
+
+.logo h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Desktop Navigation Links */
 .nav-links ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: center;
 }
 
-.nav-links ul li {
+.nav-links li {
   margin-left: 20px;
 }
 
-.nav-links ul li a {
-  text-decoration: none;
+.nav-links a {
   color: #fff;
-  font-size: 18px;
+  text-decoration: none;
+  padding: 10px;
+  transition: background-color 0.3s;
 }
 
-.hamburger {
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: #ff6600;
+}
+
+
+/* Hamburger, Close Button, and Cart */
+.hamburger, .close-btn {
     display: none;
     cursor: pointer;
-    font-size: 24px;
-    color: #fff;
 }
 
-.hamburger i {
+.hamburger i, .cart-link i {
     font-size: 24px;
     color: #fff;
 }
 
 .close-btn {
-    display: none; /* Hidden by default */
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 15px; 
     font-size: 24px;
     color: #fff;
-    cursor: pointer;
 }
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
