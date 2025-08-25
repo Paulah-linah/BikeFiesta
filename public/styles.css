@@ -48,7 +48,7 @@ main {
   padding: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 /* Individual Navigation Link Item */
@@ -176,6 +176,10 @@ button:hover .hover-btn {
   transform: translate(0%, 0%);
 }
 
+#shopLink {
+  text-decoration: none;
+}
+
 
 @media (max-width: 768px) {
     /* Hide Desktop Nav, Show Hamburger */
@@ -184,6 +188,10 @@ button:hover .hover-btn {
     }
     .hamburger {
         display: block;
+    }
+
+    header {
+        padding: 15px 20px;
     }
 
     /* Side Panel Container */
@@ -250,5 +258,6 @@ button:hover .hover-btn {
 
     .content blockquote {
         font-size: 1.25rem; /* 20px */
+        margin-bottom: 20px;
     }
 }
