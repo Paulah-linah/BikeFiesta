@@ -37,6 +37,11 @@ header {
   margin: 0;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
 .nav-links ul {
   list-style-type: none;
   margin: 0;
@@ -217,12 +222,21 @@ footer {
 
 /* --- RESPONSIVE STYLES --- */
 @media (max-width: 768px) {
+  header {
+    padding: 15px;
+  }
+
+  .logo h1 {
+    font-size: 22px;
+  }
+
   .nav-links ul {
     display: none;
   }
 
   .hamburger {
     display: block;
+    margin-left: 15px;
   }
 
   .nav-links {
@@ -268,6 +282,7 @@ footer {
 
   main {
     flex-direction: column;
+    padding: 15px;
   }
 
   #cart-summary {
@@ -283,7 +298,7 @@ footer {
 
 @media (max-width: 480px) {
   .logo h1 {
-    font-size: 1.25rem;
+    font-size: 20px;
   }
 
   main > h1 {
@@ -293,6 +308,7 @@ footer {
   .cart-item {
     flex-direction: column;
     text-align: center;
+    padding: 15px;
   }
 
   .cart-item img {
