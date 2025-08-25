@@ -131,6 +131,14 @@ footer {
 
 /* --- RESPONSIVE STYLES --- */
 @media (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    .logo h1 {
+        font-size: 22px;
+    }
+
     /* Hide Desktop Nav, Show Hamburger */
     .nav-links ul {
         display: none;
@@ -186,6 +194,10 @@ footer {
         box-sizing: border-box;
     }
 
+    main {
+        padding: 15px;
+    }
+
     /* Responsive Content & Fonts */
     .about-section {
         flex-direction: column;
@@ -194,11 +206,11 @@ footer {
 
     .about-content, .about-image {
         flex-basis: 100%;
-        padding: 0 15px;
+        padding: 0 10px;
     }
 
     .about-content {
-        margin-top: 30px;
+        margin-top: 20px;
     }
 
     .about-content h2 {
@@ -207,5 +219,19 @@ footer {
 
     .about-content p {
         font-size: 1rem; /* Responsive Font */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 20px;
+    }
+
+    .about-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-content p {
+        font-size: 0.95rem;
     }
 }
