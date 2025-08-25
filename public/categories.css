@@ -10,7 +10,6 @@ body {
   }
 
   main {
-    padding-top: 100px; /* Push content below the absolute header */
     flex-grow: 1; /* Make main content fill available space */
   }
   
@@ -131,13 +130,13 @@ body {
   
 /* Header and Navigation Styles */
 header {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   z-index: 1000;
 }
 
@@ -180,6 +179,8 @@ header {
 .hamburger {
     display: none;
     cursor: pointer;
+    font-size: 24px;
+    color: #fff;
 }
 
 .hamburger i {
@@ -199,12 +200,18 @@ header {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+    
     .nav-links ul {
         display: none;
     }
+    
     .hamburger {
         display: block;
     }
+    
     .nav-links {
         position: fixed;
         top: 0;
@@ -212,57 +219,74 @@ header {
         height: 100%;
         width: 250px;
         background-color: #333;
-        z-index: 1000;
+        z-index: 1001;
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
         padding-top: 60px;
         box-sizing: border-box;
     }
+    
     .nav-links.active {
         transform: translateX(0);
     }
+    
     .nav-links.active .close-btn {
         display: block;
     }
+    
     .nav-links.active ul {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
     }
+    
     .nav-links.active li {
         width: 100%;
         margin: 0;
     }
+    
     .nav-links.active a {
         padding: 15px 20px;
         display: block;
         width: 100%;
         box-sizing: border-box;
+        border-bottom: 1px solid #555;
     }
+    
+    .nav-links.active a:hover {
+        background-color: #ff6600;
+    }
+    
     .logo h1 {
         font-size: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 10px 15px;
+    }
+    
     .logo h1 {
         font-size: 1.25rem;
+    }
+    
+    .logo i {
+        font-size: 28px;
     }
 }
 
 /* Responsive Carousel Styles */
 @media (max-width: 768px) {
   .carousel {
-    padding: 15px;
+    padding: 20px 15px;
   }
 
   .categories__title {
     font-size: 22px;
-    padding-left: 15px;
+    margin-bottom: 25px;
   }
-
-
 
   /* Disable hover effects on mobile */
   .carousel-item:hover ~ .carousel-item {
@@ -278,36 +302,47 @@ header {
   }
 
   .carousel-item {
-    width: 150px;
-    height: 200px;
+    width: 160px;
+    height: 220px;
+    margin-right: 15px;
   }
 
   .carousel-item__img {
-    width: 150px;
-    height: 200px;
+    width: 160px;
+    height: 220px;
   }
 
   .carousel-item__details .controls {
-    padding-top: 130px;
+    padding-top: 150px;
   }
 }
 
 @media (max-width: 480px) {
+  .carousel {
+    padding: 15px 10px;
+  }
+  
   .categories__title {
-    font-size: 18px;
+    font-size: 20px;
+    margin-bottom: 20px;
   }
 
   .carousel-item {
-    width: 120px;
-    height: 180px;
+    width: 140px;
+    height: 190px;
+    margin-right: 12px;
   }
 
   .carousel-item__img {
-    width: 120px;
-    height: 180px;
+    width: 140px;
+    height: 190px;
   }
 
   .carousel-item__details .controls {
-    padding-top: 110px;
+    padding-top: 120px;
+  }
+  
+  .carousel-item__details span {
+    font-size: 1rem;
   }
 }
