@@ -10,30 +10,27 @@
 </head>
 <body>
   <header>
-    <div class="logo">
-      <i class="fas fa-bicycle"></i>
-      <h1>BikeFiesta</h1>
-    </div>
-    <div class="nav-links">
-      <div class="close-btn">
-        <i class="fas fa-times"></i>
-      </div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="categories.html">Categories</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="header-right">
-      <a href="cart.html" class="cart-link">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-      </a>
-      <div class="hamburger">
-        <i class="fas fa-bars"></i>
-      </div>
+    <a href="index.html" class="logo">
+        <i class="fas fa-bicycle"></i>
+        <h1>BikeFiesta</h1>
+    </a>
+    <div class="nav-right">
+        <div class="nav-links">
+            <div class="close-btn">&times;</div>
+            <ul>
+                <li><a href="index.html"class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </div>
+        <a href="cart.html" class="cart-link">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
     </div>
   </header>
 
@@ -126,8 +123,20 @@
         const productCard = button.closest('.product-card');
         const category = productCard.getAttribute('data-category');
         const name = productCard.querySelector('h3').textContent;
-        const price = parseInt(productCard.querySelector('.price').textContent.replace(/[^0-9]/g, ''));
+        const priceText = productCard.querySelector('.price').textContent;
+        console.log('DEBUG - Original price text:', priceText);
+        // Extract only numbers from price text like "Kshs.315,000" -> "315000"
+        const cleanedText = priceText.replace(/[^\d]/g, '');
+        console.log('DEBUG - Cleaned text:', cleanedText);
+        const price = parseInt(cleanedText);
+        console.log('DEBUG - Parsed price:', price);
         const image = productCard.querySelector('img').src;
+
+        // Ensure price is a valid number
+        if (isNaN(price)) {
+          alert('Error: Invalid price format - cleaned text: ' + cleanedText);
+          return;
+        }
 
         // Check if the product is out of stock
         if (isOutOfStock(button)) {
@@ -141,6 +150,15 @@
       });
     });
 
+    // Clear localStorage completely to remove any corrupted data
+    localStorage.clear();
+    
+    // Test price parsing logic
+    const testPrice = "Kshs.315,000";
+    const testCleaned = testPrice.replace(/[^\d]/g, '');
+    const testParsed = parseInt(testCleaned);
+    console.log('STARTUP TEST - Price:', testPrice, 'Cleaned:', testCleaned, 'Parsed:', testParsed);
+    
     // Update the cart count on page load
     updateCartCount();
   </script>

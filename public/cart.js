@@ -31,7 +31,10 @@ function renderCartItems() {
     detailsElement.appendChild(nameElement);
 
     const priceElement = document.createElement('p');
-    priceElement.textContent = `Price: Kshs. ${parseInt(item.price).toLocaleString()}`;
+    console.log('CART DEBUG - item.price:', item.price, 'type:', typeof item.price);
+    const displayPrice = typeof item.price === 'number' ? item.price : parseInt(item.price);
+    console.log('CART DEBUG - displayPrice:', displayPrice);
+    priceElement.textContent = `Price: Kshs. ${displayPrice.toLocaleString()}`;
     detailsElement.appendChild(priceElement);
 
     const quantityElement = document.createElement('p');
@@ -48,7 +51,11 @@ function renderCartItems() {
     cartItemsContainer.appendChild(cartItemElement);
 
     // Update the total price
-    totalPrice += parseInt(item.price) * item.quantity;
+    const calculationPrice = typeof item.price === 'number' ? item.price : parseInt(item.price);
+    console.log('TOTAL DEBUG - calculationPrice:', calculationPrice, 'quantity:', item.quantity);
+    const itemTotal = calculationPrice * (item.quantity || 1);
+    console.log('TOTAL DEBUG - itemTotal:', itemTotal);
+    totalPrice += itemTotal;
   });
 
   // Display the total price
@@ -64,8 +71,8 @@ function removeFromCart(index) {
 
 // Function to retrieve cart items (not used in this script)
 function retrieveCartItems() {
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  return cartItems.map(item => ({
+  const items = JSON.parse(localStorage.getItem('cartItems')) || [];
+  return items.map(item => ({
     category: item.category,
     name: item.name,
     price: parseInt(item.price),

@@ -11,17 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add to cart function
   const addToCart = (product) => {
     // Check if the product is already in the cart
-    const isInCart = cartItems.some(item => item.name === product.name);
-    if (isInCart) {
-      alert(`${product.name} is already in your cart!`);
-      return;
+    const existingProduct = cartItems.find(item => item.name === product.name);
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+      alert(`${product.name} quantity updated in cart!`);
+    } else {
+      // Add product to cart
+      cartItems.push(product);
+      alert(`${product.name} added to cart!`);
     }
 
-    // Add product to cart
-    cartItems.push(product);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     updateCartCount();
-    alert(`${product.name} added to cart!`);
   };
 
   // Update cart count
@@ -43,10 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.add-to-cart').forEach(button => {
       button.addEventListener('click', () => {
         const productCard = button.closest('.product-card');
+        const priceText = productCard.querySelector('.price').textContent;
         const product = {
           name: productCard.querySelector('h3').textContent,
-          price: productCard.querySelector('.price').textContent,
-          image: productCard.querySelector('img').src
+          price: parseInt(priceText.replace(/[^\d]/g, '')),
+          image: productCard.querySelector('img').src,
+          quantity: 1
         };
 
         // Check if the product is out of stock

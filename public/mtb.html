@@ -116,7 +116,15 @@
         const productCard = button.closest('.product-card');
         const category = productCard.getAttribute('data-category');
         const name = productCard.querySelector('h3').textContent;
-        const price = parseInt(productCard.querySelector('.price').textContent.replace(/[^0-9]/g, ''));
+        const priceText = productCard.querySelector('.price').textContent;
+        // Extract only numbers from price text like "Kshs.315,000" -> "315000"
+        const price = parseInt(priceText.replace(/[^\d]/g, ''));
+
+        // Ensure price is a valid number
+        if (isNaN(price)) {
+          alert('Error: Invalid price format');
+          return;
+        }
         const image = productCard.querySelector('img').src;
 
         // Add the product to the cart
