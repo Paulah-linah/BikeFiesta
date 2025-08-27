@@ -11,29 +11,26 @@
 <body>
   <header>
     <div class="logo">
-      <i class="fas fa-bicycle"></i>
-      <h1>BikeFiesta</h1>
+        <i class="fas fa-bicycle"></i>
+        <h1>BikeFiesta</h1>
     </div>
-    <nav class="nav-links">
-      <span class="close-btn"><i class="fas fa-times"></i></span>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="categories.html">Categories</a></li>
-        <li><a href="road.html">Road</a></li>
-        <li><a href="gravel.html">Gravel</a></li>
-        <li><a href="mtb.html">MTB</a></li>
-        <li><a href="e-bike.html">E-Bike</a></li>
-        <li><a href="fat.html">Fat Bikes</a></li>
-      </ul>
-    </nav>
-    <div class="header-right">
-      <a href="cart.html" class="cart-link">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-      </a>
-      <div class="hamburger">
-        <i class="fas fa-bars"></i>
-      </div>
+    <div class="nav-right">
+        <div class="nav-links">
+            <div class="close-btn">&times;</div>
+            <ul>
+                <li><a href="index.html"class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </div>
+        <a href="cart.html" class="cart-link">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
     </div>
   </header>
 
@@ -76,10 +73,7 @@
     </div>
   </main>
 
-  <a href="categories.html" class="back-btn">
-    <img src="back.png" alt="Back">
-  </a>
-
+ 
   <script>
     // Get references to the cart link and cart count elements
     const cartLink = document.querySelector('.cart-link');

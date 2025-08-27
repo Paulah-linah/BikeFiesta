@@ -73,3 +73,51 @@ body {
   .add-to-cart i {
     margin-right: 8px;
   }
+
+  /* Navigation Styles */
+  .nav-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  .nav-links li {
+    margin-left: 20px;
+  }
+
+  .nav-links a {
+    color: #fff !important;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 10px;
+    transition: background-color 0.3s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background-color: #ff6600;
+  }
+
+  .hamburger, .close-btn {
+    display: none;
+    cursor: pointer;
+  }
+
+  .hamburger i {
+    font-size: 24px;
+    color: #fff;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #fff;
+  }
